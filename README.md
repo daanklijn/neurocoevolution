@@ -1,2 +1,2 @@
-# neurocoevolution
-Deep NeuroCoevolution: a superior approach to solvingcomplex multi-agent problems
+# Deep NeuroCoevolution
+This repository contains the code for the paper "Deep NeuroCoevolution: a superior approach to solvingcomplex multi-agent problems".
