@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "rllib-based-2"
+version = "0.1.0"
+description = ""
+authors = ["daanklijn <daanklijn0@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.7,<3.9"
+PettingZoo = "^1.4.0"
+SuperSuit = "^2.2.0"
+AutoROM = "^0.1.18"
+multi-agent-ale-py = "0.1.10"
+pandas = "^1.1.4"
+tensorflow = "^2.3.1"
+wandb = "^0.10.10"
+pygame = "^2.0.0"
+pytest = "^6.2.1"
+matplotlib = "^3.3.3"
+dm-tree = "^0.1.5"
+moviepy = "^1.0.3"
+imageio = "^2.9.0"
+ray = "^1.1.0"
+aiohttp = "^3.7.3"
+gym = "^0.18.0"
+tensorflow-gan = "^2.0.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
