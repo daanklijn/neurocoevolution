@@ -7,6 +7,7 @@ from tensorflow.python.keras.layers import Conv2D, Flatten, Dense, Concatenate, 
     BatchNormalization
 import numpy as np
 
+
 class VBNChromosome:
     """ Class that wraps the neural network. Includes functionality
     for Virtual Batch Normalization and the mutation of weights."""

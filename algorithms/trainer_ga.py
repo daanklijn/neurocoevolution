@@ -35,7 +35,18 @@ class GATrainer(EATrainer):
                     range(self.config['number_elites'])]
         self.winner = None
 
+    @property
     def step(self):
+        """ Evolve the next generation using the Genetic Algorithm. This process
+        consists of three steps:
+        1. Communicate the elites of the previous generation
+        to the workers and let them mutate and evaluate them against individuals from
+        the Hall of Fame. To include a form of Elitism, not all elites are mutated.
+        2. Communicate the mutated weights and fitnesses back to the trainer and
+        determine which of the individuals are the fittest. The fittest individuals
+        will form the elites of the next population.
+        3. Evaluate the fittest
+        individual against a random policy and log the results. """
 
         # Evaluate mutations vs first hof
         worker_jobs = []

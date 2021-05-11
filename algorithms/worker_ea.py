@@ -28,6 +28,7 @@ class EAWorker:
         print(f"Hello world from worker {worker_index}")
 
     def evaluate(self, weights):
+        """ Evlauate weights by playing against a random policy. """
         recorder = VideoRecorder(self.env, path=self.video_path_eval)
         self.elite.set_weights(weights)
         reward, _, ts = self.play_game(self.elite,
@@ -42,6 +43,7 @@ class EAWorker:
         }
 
     def play_game(self, player1, player2, recorder=None, eval=False):
+        """ Play a game using the weights of two players. """
         obs = self.env.reset()
         reward1 = 0
         reward2 = 0
@@ -53,8 +55,8 @@ class EAWorker:
             action1 = player1.determine_actions(filtered_obs1)
             action2 = player2.determine_actions(filtered_obs2)
             obs, reward, done, info = self.env.step({
-                PLAYER_1_ID: action1[0],
-                PLAYER_2_ID: action2[0]
+                PLAYER_1_ID: action1,
+                PLAYER_2_ID: action2,
             })
             if self.config['render']:
                 self.env.render()

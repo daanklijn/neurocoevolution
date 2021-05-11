@@ -30,6 +30,13 @@ class ESTrainer(EATrainer):
         self.weights.virtual_batch_norm(self.collect_samples())
 
     def step(self):
+        """ Evolve one generation using the Evolution Strategies algorithm.
+        This consists of four steps:
+        1. Send the current weights to a number of workers and mutate and evaluate them.
+        2. Communicate the mutated weights and their fitness back to the Trainer.
+        3. Update the weights using the ES update rule.
+        4. Evaluate the updated weights against a random policy and log the outcome.
+        """
         worker_jobs = []
         for i in range(self.config['population_size']):
             worker_id = i % self.config['num_workers']
@@ -76,13 +83,15 @@ class ESTrainer(EATrainer):
         return summary
 
     def compute_weight_update(self, noises, normalized_rewards):
+        """ Compute the weight update using the update rule from the OpenAI ES. """
         config = self.config
         factor = config['learning_rate'] / (
-                    config['population_size'] * config['mutation_power'])
+                config['population_size'] * config['mutation_power'])
         weight_update = factor * np.dot(np.array(noises).T, normalized_rewards)
         return weight_update
 
     def normalize_rewards(self, rewards):
+        """ Normalize the rewards using z-normalization. """
         rewards = np.array(rewards)
         reward_mean = np.mean(rewards)
         reward_std = np.std(rewards)

@@ -27,6 +27,8 @@ class GAWorker(EAWorker):
         self.video_path_eval = f'/tmp/video_worker_{worker_index}_eval.mp4'
 
     def evaluate_mutations(self, elite, oponent, record=False, mutate_oponent=True):
+        """ Mutate the inputted weights and evaluate its performance against the
+        inputted oponent. """
         recorder = VideoRecorder(self.env, path=self.video_path) if record else None
         self.elite.set_weights(elite)
         self.oponent.set_weights(oponent)

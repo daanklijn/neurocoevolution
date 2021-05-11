@@ -1,16 +1,10 @@
-import logging
-
 import os
 from abc import ABCMeta, abstractmethod
-from pathlib import Path
-from random import randint
 
 import numpy as np
 import ray
-import yaml
 from ray.rllib.agents import Trainer, with_common_config
 from ray.rllib.utils.annotations import override
-import tensorflow as tf
 from ray.rllib.utils.filter import MeanStdFilter
 
 from algorithms.worker_es import ESWorker
@@ -39,16 +33,15 @@ class EATrainer(Trainer):
         self.generation = 0
 
     def collect_samples(self):
+        """ Sample game frames from the environment by letting two random policies
+        play against eachother. """
         env = self.env_creator(self.config)
         obs = env.reset()
         obs_filter = MeanStdFilter(obs[PLAYER_1_ID].shape)
         policy = RandomPolicy(self.config['number_actions'])
         samples = []
         for _ in range(500):
-            obs, _, done, _ = env.step({
-                PLAYER_1_ID: policy.determine_actions(obs)[0],
-                PLAYER_2_ID: policy.determine_actions(obs)[0]
-            })
+            obs, _, done, _ = env.step
             samples += [obs_filter(obs[PLAYER_1_ID]), obs_filter(obs[PLAYER_2_ID])]
             if done[PLAYER_1_ID]:
                 env.reset()
@@ -61,6 +54,7 @@ class EATrainer(Trainer):
         pass
 
     def try_save_winner(self, winner_weights):
+        """ Save the best weights to a file. """
         if not os.path.exists('results'):
             os.mkdir('results')
         filename = f'results/winner_weights_generation_{self.generation}.npy'
@@ -71,12 +65,15 @@ class EATrainer(Trainer):
         return filename
 
     def add_videos_to_summary(self, results, summary):
+        """ Add videos to the summary dictionary s.t. they can be logged to the wandb
+        framework. """
         for i, result in enumerate(results):
             video = result['video']
             if video:
                 summary[f'train_video_{i}'] = results[i]['video']
 
     def evaluate_current_weights(self, best_mutation_weights):
+        """ Send the weights to a number of workers and ask them to evaluate the weights. """
         evaluate_jobs = []
         for i in range(self.config['evaluation_games']):
             worker_id = i % self.config['num_workers']
@@ -86,6 +83,7 @@ class EATrainer(Trainer):
         return evaluate_results
 
     def increment_metrics(self, results):
+        """ Increment the total timesteps, episodes and generations. """
         self.timesteps_total += sum([result['timesteps_total'] for result in results])
         self.episodes_total += len(results)
         self.generation += 1

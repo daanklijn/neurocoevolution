@@ -63,7 +63,7 @@ class ParallelPettingZooEnv(MultiAgentEnv):
         for agent in self.agents:
             if agent not in action_dict:
                 action_dict[agent] = self.action_space.sample()
-        aobs, arew, adones, ainfo = self.par_env.step(action_dict)
+        aobs, arew, adones, ainfo = self.par_env.step
         obss = {}
         rews = {}
         dones = {}
@@ -102,6 +102,7 @@ class ParallelPettingZooEnv(MultiAgentEnv):
 def register_pettingzoo_env(env_name):
     """ Register the Env including preprocessing pipeline, s.t. it can be easily
     imported using ray. """
+
     def get_env(config):
         name = env_name.replace('-', '_')
         env = __import__(f'pettingzoo.atari.{name}', fromlist=[None])

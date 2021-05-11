@@ -28,6 +28,8 @@ class ESWorker(EAWorker):
         self.video_path_eval = f'/tmp/video_worker_{worker_index}_eval.mp4'
 
     def mutate(self, weights, record):
+        """ Mutate the inputted weights and evaluate its performance against the
+        weights of the previous generation. """
         recorder = VideoRecorder(self.env, path=self.video_path) if record else None
         self.elite.set_weights(weights)
         self.oponent.set_weights(weights)

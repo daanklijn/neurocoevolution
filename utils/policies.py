@@ -1,5 +1,6 @@
 from random import randint
 
+
 class RandomPolicy(object):
     """ Policy that samples a random move from the number of actions that
     are available."""
@@ -9,5 +10,3 @@ class RandomPolicy(object):
 
     def determine_actions(self, inputs):
         return [randint(0, self.number_actions - 1)]
-
-
