@@ -1,5 +1,5 @@
 # Deep NeuroCoevolution
-This repository contains the code for the paper "A Coevolutionary Approach to Deep Multi-agent Reinforcement Learning".
+This repository contains the code for the paper [A Coevolutionary Approach to Deep Multi-agent Reinforcement Learning](https://arxiv.org/pdf/2104.05610.pdf).
 
 # Running the experiments
 
