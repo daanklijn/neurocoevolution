@@ -1,59 +1,149 @@
-<html class="h-screen">
+<html class="h-screen overflow-hidden">
 <head>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="w-full p-8">
-    <div class="text-2xl font-serif text-center">A Coevolutionary Approach to Deep Multi-agent Reinforcement Learning</div>
+<div class="w-full p-8 bg-blue-50">
+    <div class="text-2xl font-serif text-center">A Coevolutionary Approach to Deep Multi-agent Reinforcement Learning
+    </div>
     <div class="text-xl font-serif text-center">Daan Klijn and Gusz Eiben</div>
 </div>
-<div class="grid grid-rows-2 grid-cols-3 grid-flow-row gap-6 p-6">
-    <div class="row-span-2 col-span-1 bg-white p-8">
-        <div class="text-bg font-bold">Problem statement and contributions</div>
-        <div class="text-sm">
-            Recent research shows that Deep Neuroevolution is capable of evolving multi-million-parameter DNN's, which proved to be particularly useful in the field of Reinforcement Learning (RL).
-            This is mainly due to its excellent scalability and simplicity compared to the traditional MDP-based RL methods.
-            <br>
-            <br>
-            So far, Deep Neuroevolution has only been applied to complex single-agent problems. As evolutionary methods are a natural choice for multi-agent problems, the following question arises: <span class="font-bold">can Deep Neuroevolution can also be applied in a complex multi-agent setting?</span>
-            <br>
-            <br>
-            In this work, we describe and validate <span class="font-bold">a new approach based on coevolution</span>. To validate our approach, we benchmark two Deep coevolutionary Algorithms on a range of multi-agent Atari games and compare our results against the results of Ape-X DQN.
-            <br>
-            <br>
-            Our research shows that the combination of Deep Neuroevolution and Coevolution:
-            <ul class="list-disc pl-6">
-                <li>Can succesfully learn to play multiplayer video games using pixel inputs.</li>
-                <li>Outperforms Ape-X DQN in some of the benchmarks.</li>
-                <li>Are a viable approach to solving complex multi-agent decision-making problems.</li>
-                <li>Might open up a new door in the field of MARL.</li>
-            </ul>
+<div class="flex flex-row">
+    <!--    <div class="grid grid-cols-3 gap-4 p-4 bg-gray-100">-->
+    <div class="w-1/3">
+        <div class="bg-white p-4">
+            <!--        <div class="row-span-2 col-span-1 bg-white p-8 shadow-lg rounded">-->
+            <div class="text-bg font-bold">Problem statement and contributions</div>
+            <div class="text-xs">
+                Recent research shows that Deep Neuroevolution is capable of evolving multi-million-parameter DNN's,
+                which proved to be particularly useful in the field of Reinforcement Learning.
+                This is mainly due to its excellent scalability and simplicity compared to the traditional MDP-based Reinforcement Learning
+                methods.
+                <br>
+                <br>
+                So far, Deep Neuroevolution has only been applied to complex single-agent problems. As evolutionary
+                methods are a natural choice for multi-agent problems, the following question arises: <span
+                    class="font-bold">can Deep Neuroevolution can also be applied in a complex multi-agent setting?</span>
+                <br>
+                <br>
+                In this work, we describe and validate <span
+                    class="font-bold">a new approach based on coevolution</span>. To validate our approach, we benchmark
+                two Deep coevolutionary Algorithms on a range of multi-agent Atari games and compare our results against
+                the results of Ape-X DQN.
+                <br>
+                <br>
+                Our research shows that the combination of Deep Neuroevolution and Coevolution:
+                <ul class="list-disc pl-6">
+                    <li>Can succesfully learn to play multiplayer video games using pixel inputs.</li>
+                    <li>Outperforms Ape-X DQN in some of the benchmarks.</li>
+                    <li>Are a viable approach to solving complex multi-agent decision-making problems.</li>
+                    <li>Might open up a new door in the field of MARL.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="bg-white dont-break p-4">
+            <div class="text-bg font-bold">Our approach</div>
+            <div class="text-xs">
+                In this work, we combine Deep Neuroevolution with a coevolutionary approach. We apply this approach to
+                two successful Deep Neuroevolution algorithms; the Evolution Strategies from
+                \citet{salimans2017evolution} and the Genetic Algorithm from \citet{such2017deep}. To prove that even a
+                simple coevolutionary setup works in combination with DNE, we only transform the original two algorithms
+                to their coevolutionary counterparts and limit the number of features we add to them.
+                For both algorithms we took an evaluator based approach. For the coevolutionary Evolution Strategies,
+                evaluation is perfromed using the last $k$ partents. Similarly, the coevolutionary Genetic Algorithm
+                uses the fittest individuals from the last $k$ generations. Below the original algorithms and their
+                coevolutionary variants can be found.
+                <img src="es.png">
+                <img src="ga.png">
+            </div>
         </div>
     </div>
-    <div class="col-span-1 bg-white p-8">
-        <div class="text-bg font-bold">Our approach</div>
-        <div class="text-xs">
-            Traditionally, Deep Artificial Neural Networks (DNN's) are trained through gradient descent. Recent research shows that Deep Neuroevolution (DNE) is also capable of evolving multi-million-parameter DNN's, which proved to be particularly useful in the field of Reinforcement Learning (RL). This is mainly due to its excellent scalability and simplicity compared to the traditional MDP-based RL methods. So far, DNE has only been applied to complex single-agent problems. As evolutionary methods are a natural choice for multi-agent problems, the question arises whether DNE can also be applied in a complex multi-agent setting. In this paper, we describe and validate a new approach based on coevolution. To validate our approach, we benchmark two Deep coevolutionary Algorithms on a range of multi-agent Atari games and compare our results against the results of Ape-X DQN. Our results show that these Deep coevolutionary algorithms (1) can be successfully trained to play various games, (2) outperform Ape-X DQN in some of them, and therefore (3) show that coevolution can be a viable approach to solving complex multi-agent decision-making problems.
+
+    <div class="w-1/2">
+        <div class="bg-white dont-break p-4">
+            <div class="text-bg font-bold">Experimental setup</div>
+            <div class="flex">
+                <div class="text-xs w-1/2">
+                    To validate our approach we used a diverse set of 8 multi-player Atari games from the PettingZoo benchmark \cite{terry2020pettingzoo}.
+                    Below a short overview is given of our experimental setup.
+                    <ul class="list-disc pl-6">
+                        <li> <span class="font-bold">Preprocessing</span> - We process the game frames as proposed by \citet{mnih2015human}. Besides that, we also add a form of agent indication \cite{gupta2017cooperative} as it is essential for each agent to know whether it is player one or player two. </li>
+                        <li> <span class="font-bold">Network Architecture</span> - We use a DNN that is similar to the large DQN that was used by \citet{mnih2015human}. Furthermore, we use virtual batch normalization (VBN) \cite{salimans2016improved} to ensure that the evolved agents are diverse enough. Without VBN, many evolved agents were not diverse and always performed the same actions, regardless of the input. </li>
+                        <li> <span class="font-bold">Hyperparameters</span> - In comparison to the original ES and GA, we used a slightly higher noise standard deviation and a smaller population size. We were able to get the best results using a population size of 200 and standard deviations of 0.005 (GA) and 0.05 (ES). Furthermore, we found that using $k=3$ for the GA and $k=1$ for the ES was enough to ensure accurate evaluations of individuals. </li>
+                    </ul>
+                </div>
+                <img src="atari.png" class="w-1/2 p-4">
+            </div>
+        </div>
+        <div class="bg-white dont-break p-4">
+            <div class="text-bg font-bold">Benchmark results</div>
+            <div class="">
+                <div class="text-xs">
+                    We trained both coevolutionary algorithms on the eight different games, whereas we start learning from scratch for each of the games. After 200 million frames, we evaluate the trained agents by playing 50 games against a random agent. The training convergence and the average performance against the random agent of both algorithms and Ape-X can be found below.
+                </div>
+                <div class="flex justify-around mt-4">
+                    <img src="result_table.png" class="h-60 py-2">
+                    <img src="convergence.png" class="h-64 py-2">
+                </div>
+            </div>
+            <div class="text-xs">
+
+            </div>
         </div>
     </div>
-    <div class="row-span-1 col-span-1 bg-white p-8">
-        <div class="text-bg font-bold">Experiments</div>
-        <div class="text-xs">
-            Traditionally, Deep Artificial Neural Networks (DNN's) are trained through gradient descent. Recent research shows that Deep Neuroevolution (DNE) is also capable of evolving multi-million-parameter DNN's, which proved to be particularly useful in the field of Reinforcement Learning (RL). This is mainly due to its excellent scalability and simplicity compared to the traditional MDP-based RL methods. So far, DNE has only been applied to complex single-agent problems. As evolutionary methods are a natural choice for multi-agent problems, the question arises whether DNE can also be applied in a complex multi-agent setting. In this paper, we describe and validate a new approach based on coevolution. To validate our approach, we benchmark two Deep coevolutionary Algorithms on a range of multi-agent Atari games and compare our results against the results of Ape-X DQN. Our results show that these Deep coevolutionary algorithms (1) can be successfully trained to play various games, (2) outperform Ape-X DQN in some of them, and therefore (3) show that coevolution can be a viable approach to solving complex multi-agent decision-making problems.
+    <div class="w-1/3">
+
+        <div class="bg-white dont-break p-4">
+            <div class="text-bg font-bold">Conclusion</div>
+            <div class="text-xs">
+                Our results demonstrate that the coevolutionary approach can train agents that can play most of the games to some extent while even outperforming Ape-X DQN in several of them. We hypothesize that this approach's effectiveness might be due to the EA's being more resistant to the non-stationarity that is introduced by the multi-agent aspect of these problems. Although this work only explores the capabilities of simple coevolutionary algorithms on a small range of benchmarks, we do believe that this might open up a new door in the field of MARL.
+            </div>
+        </div>
+        <div class="bg-white dont-break p-4">
+            <div class="text-bg font-bold">Future work</div>
+            <div class="text-xs">
+                As our work is limited in terms of algorithm features and number of benchmarks a set of questions remains unanswered. We hope that these questions will be answered by future research.
+                <ul class="list-disc pl-6">
+                    <li> How well do these coevolutionary algorithms perform compared to modern Multi-Agent Reinforcement Learning algorithms?
+                    <li> Can coevolution also be used for complex problems that contain more than two interacting agents? </li>
+                    <li> How will the extension with features like a Pareto Archive or Novelty Search affect the algorithm's performance?</li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="bg-white dont-break p-4">
+            <div class="text-bg font-bold">References</div>
+            <div class="text-xs">
+                [1] Volodymyr  Mnih,  Koray  Kavukcuoglu,  David  Silver,  Alex  Graves,  Ioannis Antonoglou, Daan Wierstra, and Martin Riedmiller. 2013.   Playing atari with deep reinforcement learning. (2013).
+                <br>
+                [2] Tim Salimans, Jonathan Ho, Xi Chen, Szymon Sidor, and Ilya Sutskever. 2017. Evolution strategies as a scalable alternative to reinforcement learning. (2017).
+                <br>
+                [3] Felipe Petroski Such, Vashisht Madhavan, Edoardo Conti, Joel Lehman, Kenneth O Stanley, and Jeff Clune. 2017. Deep neuroevolution: Genetic algorithms are a competitive alternative for training deep neural networks for reinforcement learning. (2017).
+                <br>
+                [4] Justin K Terry, Benjamin Black, Ananth Hari, Luis Santos, Clemens Dieffendahl, Niall L Williams, Yashas Lokesh, Caroline Horsch, and Praveen Ravi. 2020. PettingZoo: Gym for Multi-Agent Reinforcement Learning. (2020).
+
+            </div>
+        </div>
+        <div class="bg-white dont-break p-4">
+<!--            <div class="text-bg font-bold">Links</div>-->
+            <div class="text-xs flex justify-around">
+                <div class="w-1/4 text-center">
+                    GitHub Repository
+                <img src="qr_code.png">
+                </div>
+                <div class="w-1/4 text-center">
+                    Arxiv Preprint
+                    <img src="qr_paper.png">
+                </div>
+                <div class="w-1/4 text-center">
+                    Gameplay videos
+                    <img src="qr_videos.png">
+                </div>
+
+            </div>
         </div>
     </div>
-    <div class="row-span-1 col-span-1 bg-white p-8">
-        <div class="text-bg font-bold">Results</div>
-        <div class="text-xs">
-            Traditionally, Deep Artificial Neural Networks (DNN's) are trained through gradient descent. Recent research shows that Deep Neuroevolution (DNE) is also capable of evolving multi-million-parameter DNN's, which proved to be particularly useful in the field of Reinforcement Learning (RL). This is mainly due to its excellent scalability and simplicity compared to the traditional MDP-based RL methods. So far, DNE has only been applied to complex single-agent problems. As evolutionary methods are a natural choice for multi-agent problems, the question arises whether DNE can also be applied in a complex multi-agent setting. In this paper, we describe and validate a new approach based on coevolution. To validate our approach, we benchmark two Deep coevolutionary Algorithms on a range of multi-agent Atari games and compare our results against the results of Ape-X DQN. Our results show that these Deep coevolutionary algorithms (1) can be successfully trained to play various games, (2) outperform Ape-X DQN in some of them, and therefore (3) show that coevolution can be a viable approach to solving complex multi-agent decision-making problems.
-        </div>
-    </div>
-    <div class="row-span-1 col-span-1 bg-white p-8">
-        <div class="text-bg font-bold">Conclusion</div>
-        <div class="text-xs">
-            Traditionally, Deep Artificial Neural Networks (DNN's) are trained through gradient descent. Recent research shows that Deep Neuroevolution (DNE) is also capable of evolving multi-million-parameter DNN's, which proved to be particularly useful in the field of Reinforcement Learning (RL). This is mainly due to its excellent scalability and simplicity compared to the traditional MDP-based RL methods. So far, DNE has only been applied to complex single-agent problems. As evolutionary methods are a natural choice for multi-agent problems, the question arises whether DNE can also be applied in a complex multi-agent setting. In this paper, we describe and validate a new approach based on coevolution. To validate our approach, we benchmark two Deep coevolutionary Algorithms on a range of multi-agent Atari games and compare our results against the results of Ape-X DQN. Our results show that these Deep coevolutionary algorithms (1) can be successfully trained to play various games, (2) outperform Ape-X DQN in some of them, and therefore (3) show that coevolution can be a viable approach to solving complex multi-agent decision-making problems.
-        </div>
-    </div>
+</div>
 </div>
 <!--    <div class="bg-white p-8 mb-6 rounded shadow-md">Algorithm</div>-->
 <!--    <div class="bg-white p-8 mb-6 rounded shadow-md">Experiments</div>-->
@@ -67,5 +157,9 @@
     .masonry-3 {
         column-count: 3;
         column-gap: 1.5em;
+    }
+
+    .dont-break {
+        break-inside: avoid;
     }
 </style>
