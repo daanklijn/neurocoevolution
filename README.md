@@ -1,6 +1,14 @@
 # Deep NeuroCoevolution
 This repository contains the code for the paper [A Coevolutionary Approach to Deep Multi-agent Reinforcement Learning](https://arxiv.org/pdf/2104.05610.pdf).
 
+[Paper](https://arxiv.org/pdf/2104.05610.pdf)
+
+[Poster](https://raw.githubusercontent.com/daanklijn/neurocoevolution/main/poster.png)
+
+[Youtube video](https://www.youtube.com/watch?v=GOpzjJzpWrw)
+
+
+
 # Running the experiments
 
 1. Install the dependencies using either `poetry install` or `pip install -r requirements.txt`. 
